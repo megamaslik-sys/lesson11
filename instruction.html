@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция - Английский без проблем</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6ecbf5 0%, #059ee3 50%, #8a2be2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 8px solid #FFEB3B;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "🎓";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 3rem;
+            color: #FF5722;
+            text-shadow: 3px 3px 0 #FFEB3B;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #673AB7;
+            margin-bottom: 15px;
+        }
+
+        /* Секции инструкции */
+        .section {
+            background-color: #f9f9f9;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 8px solid;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section.general {
+            border-left-color: #4CAF50;
+        }
+
+        .section.detailed {
+            border-left-color: #2196F3;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            width: 50px;
+            height: 50px;
+            background-color: currentColor;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .section.general .section-title {
+            color: #4CAF50;
+        }
+
+        .section.detailed .section-title {
+            color: #2196F3;
+        }
+
+        .intro-text {
+            font-size: 1.8rem;
+            color: #FF5722;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #FFF9C4;
+            border-radius: 15px;
+            border: 3px dashed #FF9800;
+            text-align: center;
+        }
+
+        .content {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        .content ul, .content ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .content strong {
+            color: #FF5722;
+            font-weight: bold;
+        }
+
+        .tip-box {
+            background-color: #E3F2FD;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 3px solid #2196F3;
+        }
+
+        .tip-title {
+            color: #0D47A1;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-box {
+            background-color: #FFEBEE;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 3px solid #F44336;
+        }
+
+        .warning-title {
+            color: #D32F2F;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Кнопки */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 18px 35px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            min-width: 250px;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-start {
+            background: linear-gradient(145deg, #4CAF50, #2E7D32);
+        }
+
+        .btn-start:hover {
+            background: linear-gradient(145deg, #2E7D32, #4CAF50);
+        }
+
+        .btn-print {
+            background: linear-gradient(145deg, #2196F3, #0D47A1);
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(145deg, #0D47A1, #2196F3);
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            border: 3px solid #FFEB3B;
+        }
+
+        .footer-copyright {
+            font-size: 1rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .section-title i {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .intro-text {
+                font-size: 1.5rem;
+                padding: 15px;
+            }
+            
+            .content {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 15px 25px;
+                font-size: 1.3rem;
+                min-width: 200px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.9rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .intro-text {
+                font-size: 1.3rem;
+            }
+            
+            .content {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 15px 20px;
+                font-size: 1.2rem;
+                min-width: 180px;
+            }
+        }
+
+        /* Декоративные элементы */
+        .decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            font-size: 3rem;
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Заголовок -->
+        <header class="header">
+            <h1 class="title">ИНСТРУКЦИЯ</h1>
+            <p class="subtitle">Как пользоваться обучающим проектом «Английский без проблем»</p>
+        </header>
+
+        <!-- Общее описание -->
+        <div class="section general">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Для детей и взрослых
+            </h2>
+            
+            <div class="intro-text">
+                Привет! Это волшебная страна английского языка, где ты можешь читать интересные истории, играть и учиться одновременно! Просто нажимай на кнопочки на главной странице и отправляйся в увлекательное путешествие.
+            </div>
+            
+            <div class="content">
+                <p>Каждая кнопка на главной странице открывает новый мир знаний и развлечений! Здесь нет скучных уроков — только веселые игры, интересные комиксы и увлекательные задания.</p>
+                
+                <p>Давай узнаем, как всем этим пользоваться!</p>
+            </div>
+        </div>
+
+        <!-- Подробная инструкция -->
+        <div class="section detailed">
+            <h2 class="section-title">
+                <i class="fas fa-book-open"></i>
+                Подробная инструкция
+            </h2>
+            
+            <div class="content">
+                <h3>📱 Главная страница (старт.html)</h3>
+                <p>Когда ты откроешь главную страницу, ты увидишь 4 яркие кнопки:</p>
+                
+                <ol>
+                    <li><strong>ИНТЕРАКТИВНЫЙ КОМИКС</strong> — история про Зайца и Черепаху с переводом слов</li>
+                    <li><strong>УПРАЖНЕНИЯ</strong> — тесты и задания на проверку знаний</li>
+                    <li><strong>УЗНАТЬ НОВЫЕ СЛОВА</strong> — игровой тренажёр для запоминания глаголов</li>
+                    <li><strong>РАСПЕЧАТАТЬ ЗАДАНИЯ</strong> — материалы для занятий без компьютера</li>
+                </ol>
+                
+                <div class="tip-box">
+                    <h4 class="tip-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Подсказка
+                    </h4>
+                    <p>Не бойся нажимать на все кнопки — ничего не сломается! Можно смело исследовать каждый раздел.</p>
+                </div>
+                
+                <h3>📖 Интерактивный комикс</h3>
+                <p>Это самая интересная часть! Здесь ты можешь:</p>
+                
+                <ul>
+                    <li><strong>Читать историю</strong> про Зайца и Черепаху</li>
+                    <li><strong>Нажимать на английские слова</strong> — увидишь перевод и услышишь произношение</li>
+                    <li><strong>Играть в игру</strong> в конце комикса</li>
+                    <li><strong>Учить глаголы</strong> в прошедшем времени</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4 class="tip-title">
+                        <i class="fas fa-volume-up"></i>
+                        Важно для комикса
+                    </h4>
+                    <p>Включи звук на компьютере или планшете, чтобы слышать, как произносятся слова!</p>
+                </div>
+                
+                <h3>🎮 Новые слова - игровой тренажёр</h3>
+                <p>Теперь у нас есть новая страница с тремя увлекательными играми для запоминания слов:</p>
+                
+                <ul>
+                    <li><strong>Карточки</strong> — учи слова, нажимая на карточки</li>
+                    <li><strong>Собери слово</strong> — из букв составь английский глагол</li>
+                    <li><strong>Игра "Кто хочет стать миллионером?"</strong> — отвечай на вопросы и выигрывай баллы</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4 class="tip-title">
+                        <i class="fas fa-gamepad"></i>
+                        Секрет успеха
+                    </h4>
+                    <p>Играй в разные игры — так слова запоминаются лучше всего! Каждая игра помогает по-своему.</p>
+                </div>
+                
+                <h3>🎮 Другие игры и упражнения</h3>
+                <p>В проекте есть еще несколько игр:</p>
+                
+                <ul>
+                    <li><strong>Игра в комиксе</strong> — отвечай на вопросы по прочитанной истории</li>
+                    <li><strong>Past Simple Party</strong> — веселая игра для запоминания глаголов</li>
+                    <li><strong>Тесты и упражнения</strong> — проверь свои знания</li>
+                </ul>
+                
+                <p>После выполнения упражнений ты можешь отправить результат маме или папе через WhatsApp, Telegram или email!</p>
+                
+                <div class="warning-box">
+                    <h4 class="warning-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Что делать, если...
+                    </h4>
+                    <p><strong>Не работает звук?</strong> Проверь, не отключен ли он на устройстве, и разреши браузеру воспроизводить звук.</p>
+                    <p><strong>Картинки не показываются?</strong> Это нормально! Вместо них появятся веселые смайлики.</p>
+                    <p><strong>Что-то не грузится?</strong> Нажми F5 или кнопку обновления в браузере.</p>
+                    <p><strong>Забыл, как пользоваться?</strong> Вернись на эту страницу инструкции в любое время!</p>
+                </div>
+                
+                <h3>📄 Для родителей и учителей</h3>
+                <p>Рекомендуемый порядок занятий:</p>
+                
+                <ol>
+                    <li>Интерактивный комикс (1-2 раза)</li>
+                    <li>Игра в комиксе</li>
+                    <li>Новые слова (игровой тренажёр)</li>
+                    <li>Past Simple Party (теория про глаголы)</li>
+                    <li>Упражнения и тесты</li>
+                    <li>Распечатанные задания для закрепления</li>
+                </ol>
+                
+                <p><strong>Оптимальное время занятия:</strong> 15-25 минут в день.</p>
+                
+                <p><strong>Совет:</strong> Начинайте с комикса — он вызывает интерес к языку и показывает, что английский может быть веселым!</p>
+            </div>
+        </div>
+
+        <!-- Кнопки действий -->
+        <div class="buttons-container">
+            <a href="старт) .html" class="btn btn-start">
+                <i class="fas fa-home"></i>
+                На главную страницу
+            </a>
+            
+            <button onclick="window.print()" class="btn btn-print">
+                <i class="fas fa-print"></i>
+                Распечатать инструкцию
+            </button>
+        </div>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <p>Сайт создан с ❤️ для веселого обучения</p>
+            <p>Студия развития детей "Успех" © 2026, авторы: Маслик А.А. и Астафьева Э.Н.</p>
+            <p class="footer-copyright">Все права защищены. Любое копирование или использование материалов без разрешения авторов запрещено.</p>
+        </footer>
+    </div>
+
+    <!-- Декоративные элементы -->
+    <div class="decoration" style="top: 10%; left: 5%;">
+        <div class="star">⭐</div>
+    </div>
+    
+    <div class="decoration" style="top: 15%; right: 8%;">
+        <div class="star">🌟</div>
+    </div>
+    
+    <div class="decoration" style="bottom: 20%; left: 10%;">
+        <div class="star">✨</div>
+    </div>
+
+    <script>
+        // Добавляем звуковой эффект при нажатии на кнопки
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Создаем звуковой контекст для воспроизведения звука
+                    if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+                        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                        const audioContext = new AudioContextClass();
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        // Настройки звука
+                        oscillator.frequency.value = 600 + Math.random() * 200;
+                        oscillator.type = 'sine';
+                        
+                        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.3);
+                    }
+                });
+            });
+            
+            // Добавляем интерактивность к подсказкам
+            const tipBoxes = document.querySelectorAll('.tip-box, .warning-box');
+            
+            tipBoxes.forEach(box => {
+                box.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+            
+            // Анимация для заголовка
+            const title = document.querySelector('.title');
+            let bounceDirection = 1;
+            
+            setInterval(() => {
+                const currentY = parseFloat(getComputedStyle(title).transform.split(',')[5]) || 0;
+                
+                if (currentY <= -10) bounceDirection = 1;
+                if (currentY >= 0) bounceDirection = -1;
+                
+                title.style.transform = `translateY(${currentY + bounceDirection * 0.5}px)`;
+            }, 100);
+        });
+    </script>
+</body>
+</html>

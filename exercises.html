@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Английский без проблем - Прошедшее время</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f9ff;
+            background-image: radial-gradient(#a8d8ff 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 100, 200, 0.15);
+            border: 8px solid #ffcc00;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff9966, #ff5e62, #00b09b, #96c93d);
+            z-index: -1;
+            border-radius: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 4px dashed #4dc3ff;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 #ffe66d;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            color: #1a73e8;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .name-input-section {
+            background-color: #e6f7ff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 4px solid #4dc3ff;
+            text-align: center;
+        }
+        
+        .name-input-section h3 {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .name-input {
+            width: 80%;
+            max-width: 400px;
+            padding: 15px;
+            border-radius: 15px;
+            border: 3px solid #4dc3ff;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+        
+        .name-input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+        }
+        
+        .reminder-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0 25px;
+        }
+        
+        .reminder-btn {
+            display: inline-block;
+            background-color: #4dc3ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 0 #1a8cff;
+        }
+        
+        .reminder-btn:hover {
+            background-color: #1a8cff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #1a8cff;
+        }
+        
+        .reminder-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #1a8cff;
+        }
+        
+        .rule-box {
+            background-color: #e6f7ff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 8px solid #4dc3ff;
+            display: none;
+        }
+        
+        .rule-box h3 {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .rule-box ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .rule-box li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .close-rule {
+            float: right;
+            background-color: #ff9966;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .exercise {
+            background-color: #fff9e6;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exercise:nth-child(4) {
+            border-color: #ff9966;
+        }
+        
+        .exercise:nth-child(5) {
+            border-color: #4dc3ff;
+        }
+        
+        .exercise:nth-child(6) {
+            border-color: #9d65ff;
+        }
+        
+        .exercise:nth-child(7) {
+            border-color: #6bdb7d;
+        }
+        
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .exercise-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ff9966;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-right: 15px;
+            box-shadow: 0 4px 0 #ff774d;
+        }
+        
+        .exercise:nth-child(5) .exercise-number {
+            background-color: #4dc3ff;
+            box-shadow: 0 4px 0 #1a8cff;
+        }
+        
+        .exercise:nth-child(6) .exercise-number {
+            background-color: #9d65ff;
+            box-shadow: 0 4px 0 #7b42ff;
+        }
+        
+        .exercise:nth-child(7) .exercise-number {
+            background-color: #6bdb7d;
+            box-shadow: 0 4px 0 #4ac75e;
+        }
+        
+        .exercise-title {
+            font-size: 1.6rem;
+            color: #333;
+        }
+        
+        .verb-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .verb-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .verb-label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        input[type="text"], select {
+            padding: 12px 15px;
+            border-radius: 15px;
+            border: 3px solid #ccc;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #4dc3ff;
+            box-shadow: 0 0 0 3px rgba(77, 195, 255, 0.3);
+        }
+        
+        .correct {
+            border-color: #6bdb7d !important;
+            background-color: #f0fff4;
+        }
+        
+        .incorrect {
+            border-color: #ff6b6b !important;
+            background-color: #fff0f0;
+        }
+        
+        .option-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .option {
+            background-color: white;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .option.selected {
+            border-color: #4dc3ff;
+            background-color: #e6f7ff;
+            font-weight: bold;
+        }
+        
+        .option.correct-option {
+            border-color: #6bdb7d;
+            background-color: #e6ffec;
+        }
+        
+        .option.incorrect-option {
+            border-color: #ff6b6b;
+            background-color: #ffe6e6;
+        }
+        
+        .sentence {
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ffcc00;
+        }
+        
+        .check-btn {
+            background-color: #4dc3ff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto 10px;
+            display: block;
+            transition: all 0.3s;
+            box-shadow: 0 5px 0 #1a8cff;
+        }
+        
+        .check-btn:hover {
+            background-color: #1a8cff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #1a8cff;
+        }
+        
+        .check-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #1a8cff;
+        }
+        
+        .result-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 4px dashed #4dc3ff;
+        }
+        
+        .result-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 8px 0 #ff4757;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .result-btn:hover {
+            background-color: #ff4757;
+            transform: translateY(-5px);
+            box-shadow: 0 13px 0 #ff3742;
+        }
+        
+        .result-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 5px 0 #ff3742;
+        }
+        
+        .hint {
+            display: inline-block;
+            position: relative;
+            cursor: help;
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: underline dotted;
+        }
+        
+        .translation {
+            position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            z-index: 100;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hint:hover .translation {
+            display: block;
+        }
+        
+        .score {
+            font-size: 1.5rem;
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .message-box {
+            background-color: #e6f7ff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 4px solid #4dc3ff;
+            display: none;
+        }
+        
+        .message-box h3 {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .message {
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #4dc3ff;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+        
+        .messenger-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .messenger-btn {
+            background-color: white;
+            border: 3px solid #4dc3ff;
+            border-radius: 15px;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .messenger-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .messenger-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .whatsapp-btn {
+            border-color: #25D366;
+            color: #25D366;
+        }
+        
+        .telegram-btn {
+            border-color: #0088cc;
+            color: #0088cc;
+        }
+        
+        .email-btn {
+            border-color: #EA4335;
+            color: #EA4335;
+        }
+        
+        .messenger-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .copy-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .copy-btn {
+            background-color: #6bdb7d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #4ac75e;
+            transform: translateY(-3px);
+        }
+        
+        .copy-instruction {
+            background-color: #fff9e6;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #ffcc00;
+            font-size: 1rem;
+            text-align: left;
+        }
+        
+        .copy-instruction ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .copy-instruction li {
+            margin-bottom: 8px;
+        }
+        
+        .close-btn {
+            background-color: #ff9966;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            background-color: #ff774d;
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 2px solid #4dc3ff;
+        }
+        
+        .footer-note p {
+            margin-bottom: 8px;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+        }
+        
+        .exercise-result {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .correct-result {
+            background-color: #e6ffec;
+            color: #2e7d32;
+            border: 2px solid #6bdb7d;
+        }
+        
+        .incorrect-result {
+            background-color: #ffe6e6;
+            color: #c62828;
+            border: 2px solid #ff6b6b;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                border-width: 5px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .verb-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .option {
+                min-width: 100%;
+            }
+            
+            .exercise {
+                padding: 20px;
+            }
+            
+            .messenger-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .messenger-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .exercise-title {
+                font-size: 1.3rem;
+            }
+            
+            .result-btn {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-star"></i> Английский без проблем <i class="fas fa-star"></i></h1>
+            <div class="subtitle">Учим прошедшее время глаголов играя!</div>
+        </header>
+        
+        <section class="name-input-section">
+            <h3><i class="fas fa-user"></i> Привет! Как тебя зовут?</h3>
+            <input type="text" class="name-input" id="userName" placeholder="Введи своё имя здесь">
+            <p>Напиши своё имя, чтобы мы могли поздравить тебя с результатами!</p>
+        </section>
+        
+        <div class="reminder-container">
+            <button class="reminder-btn" id="reminderBtn">
+                <i class="fas fa-lightbulb"></i> Напомнить как образуется прошедшее время
+            </button>
+        </div>
+        
+        <div class="rule-box" id="ruleBox">
+            <button class="close-rule" id="closeRule">Закрыть</button>
+            <h3><i class="fas fa-graduation-cap"></i> Как образуется прошедшее время:</h3>
+            <ol>
+                <li><strong>Правильные глаголы:</strong> добавляем окончание <strong>-ed</strong><br>
+                Примеры: play → played, watch → watched, cook → cooked</li>
+                <li><strong>Глаголы на y (й)</strong> добавляем окончание <strong>-ed</strong><br>
+                Пример: play → played</li>
+                <li><strong>Глаголы на -y(и)</strong> меняем y на i и добавляем <strong>-ed</strong><br>
+                Примеры: study → studied, carry → carried</li>
+            </ol>
+            <p><strong>Бывает сложно, но мы справимся! Удачи!</strong></p>
+        </div>
+        
+        <!-- Упражнение 1 (бывшее 4) -->
+        <section class="exercise" id="exercise1">
+            <div class="exercise-header">
+                <div class="exercise-number">1</div>
+                <h2 class="exercise-title">Напиши глаголы в прошедшем времени</h2>
+            </div>
+            <p>Вспомни правило и напиши прошедшую форму для каждого глагола.</p>
+            
+            <div class="verb-list">
+                <div class="verb-item">
+                    <div class="verb-label">look <span class="hint">(смотреть)<span class="translation">смотреть</span></span> →</div>
+                    <input type="text" id="verb1" data-correct="looked" placeholder="напиши сюда">
+                </div>
+                
+                <div class="verb-item">
+                    <div class="verb-label">listen <span class="hint">(слушать)<span class="translation">слушать</span></span> →</div>
+                    <input type="text" id="verb2" data-correct="listened" placeholder="напиши сюда">
+                </div>
+                
+                <div class="verb-item">
+                    <div class="verb-label">play <span class="hint">(играть)<span class="translation">играть</span></span> →</div>
+                    <input type="text" id="verb3" data-correct="played" placeholder="напиши сюда">
+                </div>
+                
+                <div class="verb-item">
+                    <div class="verb-label">stop <span class="hint">(останавливаться)<span class="translation">останавливаться</span></span> →</div>
+                    <input type="text" id="verb4" data-correct="stopped" placeholder="напиши сюда">
+                </div>
+                
+                <div class="verb-item">
+                    <div class="verb-label">study <span class="hint">(учиться)<span class="translation">учиться</span></span> →</div>
+                    <input type="text" id="verb5" data-correct="studied" placeholder="напиши сюда">
+                </div>
+                
+                <div class="verb-item">
+                    <div class="verb-label">live <span class="hint">(жить)<span class="translation">жить</span></span> →</div>
+                    <input type="text" id="verb6" data-correct="lived" placeholder="напиши сюда">
+                </div>
+            </div>
+            
+            <button class="check-btn" id="checkBtn1">Проверить упражнение 1</button>
+            <div class="exercise-result" id="result1"></div>
+        </section>
+        
+        <!-- Упражнение 2 (бывшее 5) -->
+        <section class="exercise" id="exercise2">
+            <div class="exercise-header">
+                <div class="exercise-number">2</div>
+                <h2 class="exercise-title">Выбери правильный глагол</h2>
+            </div>
+            <p>Прочитай предложения и выбери правильную форму глагола.</p>
+            
+            <div class="sentence">
+                <p>1. Olga <span class="hint">(watches)<span class="translation">смотрит</span></span> TV every evening. - She _____ TV yesterday too.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="true" data-question="1">watched</div>
+                    <div class="option" data-correct="false" data-question="1">watches</div>
+                    <div class="option" data-correct="false" data-question="1">watch</div>
+                </div>
+            </div>
+            
+            <div class="sentence">
+                <p>2. Victor usually <span class="hint">(visits)<span class="translation">посещает</span></span> his grandma on Sunday. He _____ her last Sunday.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="false" data-question="2">visits</div>
+                    <div class="option" data-correct="true" data-question="2">visited</div>
+                    <div class="option" data-correct="false" data-question="2">visit</div>
+                </div>
+            </div>
+            
+            <div class="sentence">
+                <p>3. Anna always <span class="hint">(paints)<span class="translation">рисует</span></span> pictures after classes. She _____ a beautiful picture yesterday.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="false" data-question="3">paints</div>
+                    <div class="option" data-correct="false" data-question="3">paint</div>
+                    <div class="option" data-correct="true" data-question="3">painted</div>
+                </div>
+            </div>
+            
+            <div class="sentence">
+                <p>4. Oksana usually <span class="hint">(washes)<span class="translation">моет</span></span> the dishes after supper. She _____ the dishes yesterday.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="true" data-question="4">washed</div>
+                    <div class="option" data-correct="false" data-question="4">washes</div>
+                    <div class="option" data-correct="false" data-question="4">wash</div>
+                </div>
+            </div>
+            
+            <button class="check-btn" id="checkBtn2">Проверить упражнение 2</button>
+            <div class="exercise-result" id="result2"></div>
+        </section>
+        
+        <!-- Упражнение 3 (бывшее 6) -->
+        <section class="exercise" id="exercise3">
+            <div class="exercise-header">
+                <div class="exercise-number">3</div>
+                <h2 class="exercise-title">Что делали в прошлое воскресенье?</h2>
+            </div>
+            <p>Дополни предложения, выбрав правильную форму глагола.</p>
+            
+            <div class="sentence">
+                <p>1. Polina's mother _____ a delicious cake last Sunday.</p>
+                <select id="q3_1">
+                    <option value="">Выбери ответ</option>
+                    <option value="cook">cook</option>
+                    <option value="cooks">cooks</option>
+                    <option value="cooked">cooked</option>
+                </select>
+            </div>
+            
+            <div class="sentence">
+                <p>2. Victor's father _____ football on TV last Sunday.</p>
+                <select id="q3_2">
+                    <option value="">Выбери ответ</option>
+                    <option value="watch">watch</option>
+                    <option value="watches">watches</option>
+                    <option value="watched">watched</option>
+                </select>
+            </div>
+            
+            <div class="sentence">
+                <p>3. Anton's grandmother _____ bread last Sunday.</p>
+                <select id="q3_3">
+                    <option value="">Выбери ответ</option>
+                    <option value="bake">bake</option>
+                    <option value="bakes">bakes</option>
+                    <option value="baked">baked</option>
+                </select>
+            </div>
+            
+            <div class="sentence">
+                <p>4. Danila's grandfather _____ in the garden last Sunday.</p>
+                <select id="q3_4">
+                    <option value="">Выбери ответ</option>
+                    <option value="work">work</option>
+                    <option value="works">works</option>
+                    <option value="worked">worked</option>
+                </select>
+            </div>
+            
+            <button class="check-btn" id="checkBtn3">Проверить упражнение 3</button>
+            <div class="exercise-result" id="result3"></div>
+        </section>
+        
+        <!-- Упражнение 4 (бывшее 7) -->
+        <section class="exercise" id="exercise4">
+            <div class="exercise-header">
+                <div class="exercise-number">4</div>
+                <h2 class="exercise-title">Выбери правильное слово</h2>
+            </div>
+            <p>Выбери правильную форму глагола для каждого предложения.</p>
+            
+            <div class="sentence">
+                <p>A. His uncle _____ in Samara last year.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="false" data-question="A">live</div>
+                    <div class="option" data-correct="false" data-question="A">lives</div>
+                    <div class="option" data-correct="true" data-question="A">lived</div>
+                </div>
+            </div>
+            
+            <div class="sentence">
+                <p>B. My aunt _____ in Vladivostok.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="false" data-question="B">live</div>
+                    <div class="option" data-correct="true" data-question="B">lives</div>
+                    <div class="option" data-correct="false" data-question="B">lived</div>
+                </div>
+            </div>
+            
+            <div class="sentence">
+                <p>C. We usually _____ at home in the evening.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="true" data-question="C">stay</div>
+                    <div class="option" data-correct="false" data-question="C">stays</div>
+                    <div class="option" data-correct="false" data-question="C">stayed</div>
+                </div>
+            </div>
+            
+            <div class="sentence">
+                <p>D. They _____ at home last night.</p>
+                <div class="option-group">
+                    <div class="option" data-correct="false" data-question="D">stay</div>
+                    <div class="option" data-correct="false" data-question="D">stays</div>
+                    <div class="option" data-correct="true" data-question="D">stayed</div>
+                </div>
+            </div>
+            
+            <button class="check-btn" id="checkBtn4">Проверить упражнение 4</button>
+            <div class="exercise-result" id="result4"></div>
+        </section>
+        
+        <div class="result-section">
+            <button class="result-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Отправить результаты маме
+            </button>
+            
+            <div class="message-box" id="messageBox">
+                <h3><i class="fas fa-envelope"></i> Отправить результаты маме</h3>
+                <p>Твои результаты готовы! Выбери удобный способ отправить маме:</p>
+                
+                <div class="message" id="resultMessage">
+                    <!-- Здесь будет сгенерированное сообщение -->
+                </div>
+                
+                <div class="copy-section">
+                    <button class="copy-btn" id="copyBtn">
+                        <i class="fas fa-copy"></i> Скопировать сообщение
+                    </button>
+                </div>
+                
+                <div class="copy-instruction">
+                    <strong>Как отправить маме?</strong>
+                    <ol>
+                        <li>Нажми кнопку "Скопировать сообщение" выше</li>
+                        <li>Открой WhatsApp, Telegram или Email</li>
+                        <li>Вставь сообщение (нажми и удерживай пальцем, затем выбери "Вставить")</li>
+                        <li>Отправь маме!</li>
+                    </ol>
+                </div>
+                
+                <div class="messenger-buttons">
+                    <a href="#" class="messenger-btn whatsapp-btn" id="whatsappBtn" target="_blank">
+                        <i class="fab fa-whatsapp messenger-icon"></i>
+                        <span class="messenger-name">WhatsApp</span>
+                    </a>
+                    
+                    <a href="#" class="messenger-btn telegram-btn" id="telegramBtn" target="_blank">
+                        <i class="fab fa-telegram messenger-icon"></i>
+                        <span class="messenger-name">Telegram</span>
+                    </a>
+                    
+                    <a href="#" class="messenger-btn email-btn" id="emailBtn" target="_blank">
+                        <i class="fas fa-envelope messenger-icon"></i>
+                        <span class="messenger-name">Email</span>
+                    </a>
+                </div>
+                
+                <button class="close-btn" id="closeMessage">
+                    <i class="fas fa-times"></i> Закрыть
+                </button>
+                
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">Выбери мессенджер, который использует мама, чтобы отправить ей результаты!</p>
+            </div>
+            
+            <div class="score" id="scoreDisplay">
+                Твой результат: <span id="scoreValue">0</span> из <span id="totalValue">0</span> правильных ответов
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            <p>Сайт создан с ❤️ для веселого обучения</p>
+            <div class="copyright">
+                <p>Студия развития детей "Успех" © 2026, авторы: Маслик А.А. и Астафьева Э.Н.</p>
+                <p>Все права защищены. Любое копирование или использование материалов без разрешения авторов запрещено</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы для правил
+            const reminderBtn = document.getElementById('reminderBtn');
+            const ruleBox = document.getElementById('ruleBox');
+            const closeRule = document.getElementById('closeRule');
+            
+            // Элемент для имени
+            const userNameInput = document.getElementById('userName');
+            
+            // Кнопки проверки упражнений
+            const checkBtn1 = document.getElementById('checkBtn1');
+            const checkBtn2 = document.getElementById('checkBtn2');
+            const checkBtn3 = document.getElementById('checkBtn3');
+            const checkBtn4 = document.getElementById('checkBtn4');
+            
+            // Элементы для результатов упражнений
+            const result1 = document.getElementById('result1');
+            const result2 = document.getElementById('result2');
+            const result3 = document.getElementById('result3');
+            const result4 = document.getElementById('result4');
+            
+            // Кнопка отправки результатов
+            const submitBtn = document.getElementById('submitBtn');
+            const messageBox = document.getElementById('messageBox');
+            const resultMessage = document.getElementById('resultMessage');
+            const closeMessage = document.getElementById('closeMessage');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const scoreValue = document.getElementById('scoreValue');
+            const totalValue = document.getElementById('totalValue');
+            
+            // Кнопки мессенджеров и копирования
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const telegramBtn = document.getElementById('telegramBtn');
+            const emailBtn = document.getElementById('emailBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            
+            // Переменные для хранения результатов
+            let exerciseResults = {
+                1: { correct: 0, total: 0, checked: false },
+                2: { correct: 0, total: 0, checked: false },
+                3: { correct: 0, total: 0, checked: false },
+                4: { correct: 0, total: 0, checked: false }
+            };
+            
+            // Показать/скрыть правило
+            reminderBtn.addEventListener('click', function() {
+                ruleBox.style.display = 'block';
+                reminderBtn.style.display = 'none';
+            });
+            
+            closeRule.addEventListener('click', function() {
+                ruleBox.style.display = 'none';
+                reminderBtn.style.display = 'inline-block';
+            });
+            
+            // Обработка выбора вариантов в упражнении 2 и 4
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    const correct = this.getAttribute('data-correct') === 'true';
+                    
+                    // Снимаем выделение с других вариантов в этой группе
+                    const parent = this.parentElement;
+                    const siblings = parent.querySelectorAll('.option');
+                    siblings.forEach(sib => {
+                        sib.classList.remove('selected');
+                    });
+                    
+                    // Выделяем выбранный вариант
+                    this.classList.add('selected');
+                    
+                    // Помечаем как выбранный для проверки
+                    this.dataset.selected = 'true';
+                    
+                    // Не показываем правильность сразу - только после проверки
+                    this.classList.remove('correct-option', 'incorrect-option');
+                });
+            });
+            
+            // Проверка введенных глаголов в упражнении 1
+            const verbInputs = document.querySelectorAll('.verb-list input');
+            verbInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    // Снимаем подсветку при уходе фокуса
+                    // Реальная проверка будет при нажатии кнопки "Проверить"
+                    this.classList.remove('correct', 'incorrect');
+                });
+            });
+            
+            // Проверка выбранных ответов в упражнении 3
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                select.addEventListener('change', function() {
+                    // Снимаем подсветку при изменении
+                    // Реальная проверка будет при нажатии кнопки "Проверить"
+                    this.classList.remove('correct', 'incorrect');
+                });
+            });
+            
+            // Функция проверки упражнения 1
+            function checkExercise1() {
+                let correctCount = 0;
+                let totalCount = 0;
+                
+                verbInputs.forEach(input => {
+                    totalCount++;
+                    const userAnswer = input.value.trim().toLowerCase();
+                    const correctAnswer = input.getAttribute('data-correct').toLowerCase();
+                    
+                    if (userAnswer === correctAnswer && userAnswer !== '') {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                        correctCount++;
+                    } else if (userAnswer === '') {
+                        input.classList.remove('correct', 'incorrect');
+                    } else {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    }
+                });
+                
+                exerciseResults[1].correct = correctCount;
+                exerciseResults[1].total = totalCount;
+                exerciseResults[1].checked = true;
+                
+                // Показываем результат
+                result1.style.display = 'block';
+                if (correctCount === totalCount) {
+                    result1.textContent = `Отлично! Все ${correctCount} из ${totalCount} ответов правильные! 🎉`;
+                    result1.className = 'exercise-result correct-result';
+                } else {
+                    result1.textContent = `Правильно ${correctCount} из ${totalCount} ответов. Попробуй еще раз! 👍`;
+                    result1.className = 'exercise-result incorrect-result';
+                }
+                
+                updateTotalScore();
+            }
+            
+            // Функция проверки упражнения 2
+            function checkExercise2() {
+                let correctCount = 0;
+                let totalCount = 0;
+                const questions = ['1', '2', '3', '4'];
+                
+                questions.forEach(questionNum => {
+                    totalCount++;
+                    const selectedOption = document.querySelector(`.option[data-question="${questionNum}"][data-selected="true"]`);
+                    const correctOption = document.querySelector(`.option[data-question="${questionNum}"][data-correct="true"]`);
+                    
+                    // Снимаем все подсветки
+                    const optionsForQuestion = document.querySelectorAll(`.option[data-question="${questionNum}"]`);
+                    optionsForQuestion.forEach(option => {
+                        option.classList.remove('correct-option', 'incorrect-option');
+                    });
+                    
+                    // Если ответ выбран
+                    if (selectedOption) {
+                        if (selectedOption.getAttribute('data-correct') === 'true') {
+                            selectedOption.classList.add('correct-option');
+                            correctCount++;
+                        } else {
+                            selectedOption.classList.add('incorrect-option');
+                            // Показываем правильный ответ
+                            if (correctOption) {
+                                correctOption.classList.add('correct-option');
+                            }
+                        }
+                    } else {
+                        // Если ответ не выбран, показываем правильный
+                        if (correctOption) {
+                            correctOption.classList.add('correct-option');
+                        }
+                    }
+                });
+                
+                exerciseResults[2].correct = correctCount;
+                exerciseResults[2].total = totalCount;
+                exerciseResults[2].checked = true;
+                
+                // Показываем результат
+                result2.style.display = 'block';
+                if (correctCount === totalCount) {
+                    result2.textContent = `Отлично! Все ${correctCount} из ${totalCount} ответов правильные! 🎉`;
+                    result2.className = 'exercise-result correct-result';
+                } else {
+                    result2.textContent = `Правильно ${correctCount} из ${totalCount} ответов. Попробуй еще раз! 👍`;
+                    result2.className = 'exercise-result incorrect-result';
+                }
+                
+                updateTotalScore();
+            }
+            
+            // Функция проверки упражнения 3
+            function checkExercise3() {
+                let correctCount = 0;
+                let totalCount = 0;
+                
+                const correctAnswers = {
+                    'q3_1': 'cooked',
+                    'q3_2': 'watched',
+                    'q3_3': 'baked',
+                    'q3_4': 'worked'
+                };
+                
+                selects.forEach(select => {
+                    totalCount++;
+                    const userAnswer = select.value;
+                    const correctAnswer = correctAnswers[select.id];
+                    
+                    if (userAnswer === correctAnswer && userAnswer !== '') {
+                        select.classList.add('correct');
+                        select.classList.remove('incorrect');
+                        correctCount++;
+                    } else if (userAnswer === '') {
+                        select.classList.remove('correct', 'incorrect');
+                    } else {
+                        select.classList.add('incorrect');
+                        select.classList.remove('correct');
+                    }
+                });
+                
+                exerciseResults[3].correct = correctCount;
+                exerciseResults[3].total = totalCount;
+                exerciseResults[3].checked = true;
+                
+                // Показываем результат
+                result3.style.display = 'block';
+                if (correctCount === totalCount) {
+                    result3.textContent = `Отлично! Все ${correctCount} из ${totalCount} ответов правильные! 🎉`;
+                    result3.className = 'exercise-result correct-result';
+                } else {
+                    result3.textContent = `Правильно ${correctCount} из ${totalCount} ответов. Попробуй еще раз! 👍`;
+                    result3.className = 'exercise-result incorrect-result';
+                }
+                
+                updateTotalScore();
+            }
+            
+            // Функция проверки упражнения 4
+            function checkExercise4() {
+                let correctCount = 0;
+                let totalCount = 0;
+                const questions = ['A', 'B', 'C', 'D'];
+                
+                questions.forEach(questionLetter => {
+                    totalCount++;
+                    const selectedOption = document.querySelector(`.option[data-question="${questionLetter}"][data-selected="true"]`);
+                    const correctOption = document.querySelector(`.option[data-question="${questionLetter}"][data-correct="true"]`);
+                    
+                    // Снимаем все подсветки
+                    const optionsForQuestion = document.querySelectorAll(`.option[data-question="${questionLetter}"]`);
+                    optionsForQuestion.forEach(option => {
+                        option.classList.remove('correct-option', 'incorrect-option');
+                    });
+                    
+                    // Если ответ выбран
+                    if (selectedOption) {
+                        if (selectedOption.getAttribute('data-correct') === 'true') {
+                            selectedOption.classList.add('correct-option');
+                            correctCount++;
+                        } else {
+                            selectedOption.classList.add('incorrect-option');
+                            // Показываем правильный ответ
+                            if (correctOption) {
+                                correctOption.classList.add('correct-option');
+                            }
+                        }
+                    } else {
+                        // Если ответ не выбран, показываем правильный
+                        if (correctOption) {
+                            correctOption.classList.add('correct-option');
+                        }
+                    }
+                });
+                
+                exerciseResults[4].correct = correctCount;
+                exerciseResults[4].total = totalCount;
+                exerciseResults[4].checked = true;
+                
+                // Показываем результат
+                result4.style.display = 'block';
+                if (correctCount === totalCount) {
+                    result4.textContent = `Отлично! Все ${correctCount} из ${totalCount} ответов правильные! 🎉`;
+                    result4.className = 'exercise-result correct-result';
+                } else {
+                    result4.textContent = `Правильно ${correctCount} из ${totalCount} ответов. Попробуй еще раз! 👍`;
+                    result4.className = 'exercise-result incorrect-result';
+                }
+                
+                updateTotalScore();
+            }
+            
+            // Обновление общего счета
+            function updateTotalScore() {
+                let totalCorrect = 0;
+                let totalQuestions = 0;
+                
+                for (let i = 1; i <= 4; i++) {
+                    totalCorrect += exerciseResults[i].correct;
+                    totalQuestions += exerciseResults[i].total;
+                }
+                
+                scoreValue.textContent = totalCorrect;
+                totalValue.textContent = totalQuestions;
+            }
+            
+            // Привязка кнопок проверки
+            checkBtn1.addEventListener('click', checkExercise1);
+            checkBtn2.addEventListener('click', checkExercise2);
+            checkBtn3.addEventListener('click', checkExercise3);
+            checkBtn4.addEventListener('click', checkExercise4);
+            
+            // Показать результаты
+            submitBtn.addEventListener('click', function() {
+                const userName = userNameInput.value.trim();
+                if (!userName) {
+                    alert('Пожалуйста, введи своё имя в начале страницы!');
+                    userNameInput.focus();
+                    return;
+                }
+                
+                // Проверяем все упражнения, если еще не проверены
+                if (!exerciseResults[1].checked) checkExercise1();
+                if (!exerciseResults[2].checked) checkExercise2();
+                if (!exerciseResults[3].checked) checkExercise3();
+                if (!exerciseResults[4].checked) checkExercise4();
+                
+                const results = calculateResults();
+                
+                // Генерация сообщения
+                let message = `Привет, мама! Я выполнил(а) упражнения по английскому языку на тему "Прошедшее время".\n\n`;
+                message += `Мой результат: ${results.score} из ${results.total} правильных ответов!\n\n`;
+                
+                // Добавляем результаты по упражнениям
+                for (let i = 1; i <= 4; i++) {
+                    if (exerciseResults[i].checked) {
+                        message += `Упражнение ${i}: ${exerciseResults[i].correct} из ${exerciseResults[i].total}\n`;
+                    }
+                }
+                
+                message += `\n`;
+                
+                if (results.score === results.total) {
+                    message += `Я справился(ась) на отлично! Все ответы правильные! 🎉\n`;
+                } else if (results.score >= results.total * 0.7) {
+                    message += `Я хорошо справился(ась)! Есть небольшие ошибки, но я обязательно исправлю их! 👍\n`;
+                } else {
+                    message += `Было сложно, но я старался(ась)! Нужно еще немного позаниматься. 📚\n`;
+                }
+                
+                message += `\nМне так понравилось заниматься! Это было весело и интересно! 😊\n`;
+                message += `С любовью, ${userName} ❤️`;
+                
+                resultMessage.textContent = message;
+                messageBox.style.display = 'block';
+                
+                // Кодируем сообщение для URL
+                const encodedMessage = encodeURIComponent(message);
+                const emailSubject = encodeURIComponent(`Результаты упражнений по английскому от ${userName}`);
+                
+                // Устанавливаем ссылки для мессенджеров
+                whatsappBtn.href = `https://wa.me/?text=${encodedMessage}`;
+                telegramBtn.href = `https://t.me/share/url?url=&text=${encodedMessage}`;
+                emailBtn.href = `mailto:?subject=${emailSubject}&body=${encodedMessage}`;
+                
+                // Прокрутка к сообщению
+                messageBox.scrollIntoView({behavior: 'smooth'});
+            });
+            
+            // Функция подсчета результатов
+            function calculateResults() {
+                let score = 0;
+                let total = 0;
+                
+                for (let i = 1; i <= 4; i++) {
+                    if (exerciseResults[i].checked) {
+                        score += exerciseResults[i].correct;
+                        total += exerciseResults[i].total;
+                    }
+                }
+                
+                return {score, total};
+            }
+            
+            // Копирование сообщения
+            copyBtn.addEventListener('click', function() {
+                const textToCopy = resultMessage.textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Сообщение скопировано!';
+                    copyBtn.style.backgroundColor = '#6bdb7d';
+                    
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Скопировать сообщение';
+                        copyBtn.style.backgroundColor = '';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Ошибка копирования: ', err);
+                    alert('Не удалось скопировать сообщение. Попробуй выделить текст и скопировать вручную.');
+                });
+            });
+            
+            // Закрыть окно сообщения
+            closeMessage.addEventListener('click', function() {
+                messageBox.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Simple Party - Весёлое изучение английского!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            border: 6px dashed #ff6b8b;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before, header::after {
+            content: "★";
+            position: absolute;
+            color: #ffd166;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        header::before {
+            top: 15px;
+            left: 20px;
+        }
+
+        header::after {
+            bottom: 15px;
+            right: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 3.5rem;
+            color: #ff6b8b;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 #ffd166;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #06d6a0;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        .emoji {
+            font-size: 2rem;
+            margin: 0 5px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .rules-panel {
+            flex: 2;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            border: 5px solid #06d6a0;
+            box-shadow: 0 10px 25px rgba(6, 214, 160, 0.3);
+            position: relative;
+        }
+
+        .rules-panel::before {
+            content: "ПРАВИЛА";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background-color: #06d6a0;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-family: 'Nunito', sans-serif;
+            color: #118ab2;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .rule-card {
+            background-color: rgba(255, 209, 102, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 8px solid #ffd166;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .rule-title {
+            color: #ef476f;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-title i {
+            color: #ffd166;
+            font-size: 1.4rem;
+        }
+
+        .rule-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .rule-text .highlight {
+            background-color: #ffd166;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .rule-text .special {
+            color: #ef476f;
+            font-weight: bold;
+        }
+
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background-color: rgba(6, 214, 160, 0.1);
+            border: 3px solid #06d6a0;
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .example-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b8b, #ffd166, #06d6a0);
+        }
+
+        .example-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(6, 214, 160, 0.3);
+        }
+
+        .verb-form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .infinitive {
+            color: #118ab2;
+            font-weight: bold;
+        }
+
+        .arrow {
+            color: #ff6b8b;
+            font-weight: bold;
+        }
+
+        .past-simple {
+            color: #ef476f;
+            font-weight: bold;
+        }
+
+        .translation {
+            font-style: italic;
+            color: #555;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px dotted #ffd166;
+        }
+
+        .game-section {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 5px solid #ff6b8b;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+            position: relative;
+        }
+
+        .game-section::before {
+            content: "ИГРА";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background-color: #ff6b8b;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .score-board {
+            background-color: rgba(255, 209, 102, 0.3);
+            padding: 15px 25px;
+            border-radius: 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 1.5rem;
+        }
+
+        .score-value {
+            color: #ef476f;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        .game-question {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 30px 0;
+            color: #118ab2;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(17, 138, 178, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            border: 3px dashed #118ab2;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .game-question .verb {
+            color: #ef476f;
+            font-weight: bold;
+            font-size: 2.2rem;
+        }
+
+        .verb-translation {
+            font-size: 1.4rem;
+            color: #06d6a0;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .game-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background-color: rgba(6, 214, 160, 0.1);
+            border: 3px solid #06d6a0;
+            border-radius: 20px;
+            padding: 20px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #118ab2;
+        }
+
+        .option:hover {
+            background-color: rgba(6, 214, 160, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(6, 214, 160, 0.2);
+        }
+
+        .option.correct {
+            background-color: rgba(6, 214, 160, 0.3);
+            border-color: #06d6a0;
+            color: #06d6a0;
+            animation: pulse 1s;
+        }
+
+        .option.wrong {
+            background-color: rgba(239, 71, 111, 0.1);
+            border-color: #ef476f;
+            color: #ef476f;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            font-size: 1.4rem;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-next {
+            background-color: #ffd166;
+            color: #333;
+        }
+
+        .btn-next:hover {
+            background-color: #ffc745;
+        }
+
+        .btn-reset {
+            background-color: #118ab2;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background-color: #0d7599;
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: -20px;
+            opacity: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            color: #555;
+            font-size: 1.3rem;
+            border: 5px dotted #ffd166;
+        }
+
+        .footer-emoji {
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+
+        .fun-fact {
+            background-color: rgba(255, 107, 139, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #ff6b8b;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .game-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 15px 25px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .rule-text {
+                font-size: 1.1rem;
+            }
+            
+            .game-question {
+                font-size: 1.4rem;
+            }
+            
+            .option {
+                font-size: 1.3rem;
+            }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        @keyframes balloonFloat {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(20deg); }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #06d6a0;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="emoji">🎉</span> Past Simple Party! <span class="emoji">🎊</span></h1>
+            <div class="subtitle">Учим правильные глаголы весело и легко!</div>
+            <div style="font-size: 1.5rem; color: #118ab2; margin-top: 10px;">
+                Просто добавь -ed и готово! <span class="emoji">🚀</span>
+            </div>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="rules-panel">
+                <h2><i class="fas fa-graduation-cap"></i> Как образуется Past Simple?</h2>
+                
+                <div class="rule-card">
+                    <div class="rule-title"><i class="fas fa-magic"></i> Основное правило</div>
+                    <div class="rule-text">Чтобы сделать глагол в прошедшем времени, просто добавляем окончание <span class="highlight">-ed</span> к основе глагола!</div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-title"><i class="fas fa-volume-up"></i> Произношение -ed</div>
+                    <div class="rule-text">Звучать окончание может по-разному:
+                        <br>• <span class="special">[t]</span> — после глухих согласных: <span class="highlight">worked</span> [wɜːrkt]
+                        <br>• <span class="special">[d]</span> — после звонких и гласных: <span class="highlight">played</span> [pleɪd]
+                        <br>• <span class="special">[ɪd]</span> — после звуков [t] и [d]: <span class="highlight">wanted</span> [ˈwɒntɪd]
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-title"><i class="fas fa-exclamation-triangle"></i> Особые случаи</div>
+                    <div class="rule-text">
+                        1. Глагол заканчивается на <span class="highlight">-e</span> → просто добавляем <span class="highlight">-d</span>: live → lived
+                        <br>2. Глагол заканчивается на <span class="highlight">y, слышим звук [и]</span> → меняем <span class="highlight">y на i</span> и добавляем <span class="highlight">-ed</span>: study → studied
+                        <br>3. Глагол заканчивается на <span class="highlight">y, слышим [й]</span> → просто добавляем <span class="highlight">-ed</span>: play → played
+                        <br>4. Короткий глагол (согласная-гласная-согласная) → удваиваем последнюю согласную: stop → stopped
+                    </div>
+                </div>
+                
+                <h3 style="color: #ef476f; margin-top: 30px; font-size: 1.8rem;"><i class="fas fa-star"></i> Примеры</h3>
+                
+                <div class="examples">
+                    <div class="example-card">
+                        <div class="verb-form">
+                            <span class="infinitive">work</span>
+                            <span class="arrow">→</span>
+                            <span class="past-simple">worked</span>
+                        </div>
+                        <div class="translation">работать → работал</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="verb-form">
+                            <span class="infinitive">study</span>
+                            <span class="arrow">→</span>
+                            <span class="past-simple">studied</span>
+                        </div>
+                        <div class="translation">учиться → учился</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="verb-form">
+                            <span class="infinitive">play</span>
+                            <span class="arrow">→</span>
+                            <span class="past-simple">played</span>
+                        </div>
+                        <div class="translation">играть → играл</div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <div class="verb-form">
+                            <span class="infinitive">dance</span>
+                            <span class="arrow">→</span>
+                            <span class="past-simple">danced</span>
+                        </div>
+                        <div class="translation">танцевать → танцевал</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-section">
+            <div class="game-header">
+                <h2><i class="fas fa-gamepad"></i> Игра: Найди Past Simple!</h2>
+                <div class="score-board">
+                    <div>Счёт: <span class="score-value" id="score">0</span></div>
+                    <div>Вопрос: <span class="score-value" id="question-counter">1</span>/10</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            
+            <div class="game-question" id="question">
+                <!-- Вопрос будет сгенерирован через JavaScript -->
+            </div>
+            
+            <div class="game-options" id="options-container">
+                <!-- Варианты ответов будут сгенерированы через JavaScript -->
+            </div>
+            
+            <div class="game-controls">
+                <button class="btn btn-reset" id="reset-btn">
+                    <i class="fas fa-redo"></i> Начать заново
+                </button>
+                <button class="btn btn-next" id="next-btn">
+                    Следующий <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-emoji">🎈 🎨 🎯</div>
+            <p>Past Simple Party - самое весёлое изучение английского!</p>
+            <p>Запомни: practice makes perfect (практика приводит к совершенству)!</p>
+            <div class="fun-fact">
+                <i class="fas fa-lightbulb"></i> Знаете ли вы? В английском языке более 600 правильных глаголов! Но начинать лучше с самых популярных!
+            </div>
+        </footer>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        // Данные для игры: глаголы, их формы Past Simple и перевод
+        const verbs = [
+            { infinitive: "work", past: "worked", translation: "работать" },
+            { infinitive: "play", past: "played", translation: "играть" },
+            { infinitive: "live", past: "lived", translation: "жить" },
+            { infinitive: "study", past: "studied", translation: "учиться" },
+            { infinitive: "watch", past: "watched", translation: "смотреть" },
+            { infinitive: "cook", past: "cooked", translation: "готовить" },
+            { infinitive: "dance", past: "danced", translation: "танцевать" },
+            { infinitive: "jump", past: "jumped", translation: "прыгать" },
+            { infinitive: "help", past: "helped", translation: "помогать" },
+            { infinitive: "talk", past: "talked", translation: "разговаривать" },
+            { infinitive: "clean", past: "cleaned", translation: "убирать" },
+            { infinitive: "love", past: "loved", translation: "любить" },
+            { infinitive: "rain", past: "rained", translation: "идти (о дожде)" },
+            { infinitive: "visit", past: "visited", translation: "посещать" },
+            { infinitive: "try", past: "tried", translation: "пытаться" },
+            { infinitive: "cry", past: "cried", translation: "плакать" },
+            { infinitive: "stop", past: "stopped", translation: "останавливать" },
+            { infinitive: "plan", past: "planned", translation: "планировать" },
+            { infinitive: "travel", past: "travelled", translation: "путешествовать" },
+            { infinitive: "smile", past: "smiled", translation: "улыбаться" },
+            { infinitive: "like", past: "liked", translation: "нравиться" },
+            { infinitive: "walk", past: "walked", translation: "гулять" },
+            { infinitive: "open", past: "opened", translation: "открывать" },
+            { infinitive: "close", past: "closed", translation: "закрывать" },
+            { infinitive: "ask", past: "asked", translation: "спрашивать" }
+        ];
+
+        // Переменные игры
+        let gameVerbs = [];
+        let currentQuestion = 0;
+        let score = 0;
+        let gameCompleted = false;
+        const totalQuestions = 10;
+
+        // Элементы DOM
+        const questionElement = document.getElementById('question');
+        const optionsContainer = document.getElementById('options-container');
+        const scoreElement = document.getElementById('score');
+        const questionCounterElement = document.getElementById('question-counter');
+        const nextButton = document.getElementById('next-btn');
+        const resetButton = document.getElementById('reset-btn');
+        const celebrationElement = document.getElementById('celebration');
+        const progressElement = document.getElementById('progress');
+
+        // Создаем плавающие шарики
+        function createBalloons() {
+            const colors = ['#ff6b8b', '#ffd166', '#06d6a0', '#118ab2', '#ef476f'];
+            
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = `${Math.random() * 100}vw`;
+                balloon.style.animation = `balloonFloat ${Math.random() * 20 + 15}s linear infinite`;
+                balloon.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(balloon);
+            }
+        }
+
+        // Инициализация игры
+        function initGame() {
+            // Выбираем 10 случайных глаголов для игры
+            gameVerbs = [...verbs].sort(() => 0.5 - Math.random()).slice(0, totalQuestions);
+            currentQuestion = 0;
+            score = 0;
+            gameCompleted = false;
+            
+            scoreElement.textContent = score;
+            questionCounterElement.textContent = `${currentQuestion + 1}/${totalQuestions}`;
+            progressElement.style.width = `${((currentQuestion + 1) / totalQuestions) * 100}%`;
+            
+            nextButton.disabled = false;
+            nextButton.innerHTML = 'Следующий <i class="fas fa-arrow-right"></i>';
+            
+            loadQuestion();
+        }
+
+        // Загрузка вопроса
+        function loadQuestion() {
+            if (currentQuestion >= totalQuestions) {
+                endGame();
+                return;
+            }
+            
+            const currentVerb = gameVerbs[currentQuestion];
+            
+            // Формируем вопрос с переводом
+            questionElement.innerHTML = `
+                <div>Выбери правильную форму Past Simple для глагола:</div>
+                <div class="verb">${currentVerb.infinitive}</div>
+                <div class="verb-translation">(${currentVerb.translation})</div>
+            `;
+            
+            // Создаем варианты ответов (без перевода в ответах)
+            const options = generateOptions(currentVerb);
+            optionsContainer.innerHTML = '';
+            
+            options.forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option.text;
+                optionElement.dataset.correct = option.correct;
+                
+                optionElement.addEventListener('click', () => selectOption(optionElement));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Обновляем счетчик вопросов и прогресс-бар
+            questionCounterElement.textContent = `${currentQuestion + 1}/${totalQuestions}`;
+            progressElement.style.width = `${((currentQuestion + 1) / totalQuestions) * 100}%`;
+            
+            // На последнем вопросе меняем текст кнопки
+            if (currentQuestion === totalQuestions - 1) {
+                nextButton.innerHTML = 'Завершить <i class="fas fa-trophy"></i>';
+            }
+            
+            // Отключаем кнопку "Следующий вопрос" до выбора ответа
+            nextButton.disabled = true;
+        }
+
+        // Генерация вариантов ответов
+        function generateOptions(correctVerb) {
+            const options = [
+                { 
+                    text: correctVerb.past, 
+                    correct: true
+                }
+            ];
+            
+            // Добавляем 3 неправильных варианта
+            const wrongVerbs = verbs.filter(v => v.infinitive !== correctVerb.infinitive && v.past !== correctVerb.past)
+                                   .sort(() => 0.5 - Math.random())
+                                   .slice(0, 3);
+            
+            wrongVerbs.forEach(verb => {
+                options.push({ 
+                    text: verb.past, 
+                    correct: false
+                });
+            });
+            
+            // Перемешиваем варианты
+            return options.sort(() => 0.5 - Math.random());
+        }
+
+        // Выбор варианта ответа
+        function selectOption(selectedOption) {
+            if (gameCompleted) return;
+            
+            const options = document.querySelectorAll('.option');
+            const isCorrect = selectedOption.dataset.correct === 'true';
+            
+            // Отмечаем правильные и неправильные ответы
+            options.forEach(option => {
+                option.classList.remove('correct', 'wrong');
+                if (option.dataset.correct === 'true') {
+                    option.classList.add('correct');
+                } else if (option === selectedOption && !isCorrect) {
+                    option.classList.add('wrong');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Обновляем счет
+            if (isCorrect) {
+                score++;
+                scoreElement.textContent = score;
+                
+                // Создаем конфетти для правильного ответа
+                createConfetti();
+            }
+            
+            // Активируем кнопку "Следующий вопрос"
+            nextButton.disabled = false;
+        }
+
+        // Завершение игры
+        function endGame() {
+            gameCompleted = true;
+            
+            let resultMessage = '';
+            let emoji = '';
+            
+            if (score === totalQuestions) {
+                resultMessage = 'Потрясающе! Ты настоящий гений Past Simple!';
+                emoji = '🏆';
+            } else if (score >= totalQuestions * 0.8) {
+                resultMessage = 'Отлично! Ты почти мастер Past Simple!';
+                emoji = '🎯';
+            } else if (score >= totalQuestions * 0.6) {
+                resultMessage = 'Хорошо! Но ещё есть куда расти!';
+                emoji = '👍';
+            } else {
+                resultMessage = 'Попробуй ещё раз! Ты обязательно освоишь Past Simple!';
+                emoji = '💪';
+            }
+            
+            questionElement.innerHTML = `
+                <div style="font-size: 2rem; color: #ef476f;">Игра завершена! ${emoji}</div>
+                <div style="font-size: 1.5rem; margin-top: 15px;">Твой результат: ${score} из ${totalQuestions}</div>
+                <div style="font-size: 1.3rem; margin-top: 10px; color: #118ab2;">${resultMessage}</div>
+            `;
+            
+            optionsContainer.innerHTML = '';
+            nextButton.disabled = true;
+            
+            // Большой праздничный конфетти
+            for (let i = 0; i < 100; i++) {
+                createConfetti(true);
+            }
+        }
+
+        // Создание конфетти
+        function createConfetti(large = false) {
+            const colors = ['#ff6b8b', '#ffd166', '#06d6a0', '#118ab2', '#ef476f'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.width = `${Math.random() * 15 + (large ? 10 : 5)}px`;
+            confetti.style.height = `${Math.random() * 15 + (large ? 10 : 5)}px`;
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            
+            celebrationElement.appendChild(confetti);
+            
+            // Анимация конфетти
+            const animationDuration = Math.random() * 3 + 2;
+            confetti.style.animation = `balloonFloat ${animationDuration}s linear forwards`;
+            
+            // Удаление конфетти после анимации
+            setTimeout(() => {
+                confetti.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Обработчики событий
+        nextButton.addEventListener('click', () => {
+            if (gameCompleted) return;
+            
+            currentQuestion++;
+            loadQuestion();
+        });
+
+        resetButton.addEventListener('click', initGame);
+
+        // Инициализация при загрузке страницы
+        window.addEventListener('DOMContentLoaded', () => {
+            createBalloons();
+            initGame();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заяц и Черепаха - Интерактивный комикс</title>
+    <style>
+        /* Reset и базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Контейнер комикса */
+        .comic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 30px;
+            position: relative;
+        }
+        
+        /* Информация о переводе */
+        .translation-info {
+            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(41, 182, 246, 0.3);
+            border: 2px solid #0288d1;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 5px 15px rgba(41, 182, 246, 0.3); }
+            50% { box-shadow: 0 5px 25px rgba(41, 182, 246, 0.5); }
+            100% { box-shadow: 0 5px 15px rgba(41, 182, 246, 0.3); }
+        }
+        
+        .translation-info:before {
+            content: "💡";
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Заголовок */
+        .comic-header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2196F3, #0D47A1);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comic-header:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .comic-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .comic-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        /* Синий квадратик для названия перед панелями */
+        .story-title-box {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin: 20px 0 40px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+            border: 3px solid #0D47A1;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Панели комикса */
+        .comic-panels {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .comic-panel {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            border-left: 8px solid #2196F3;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .comic-panel:hover {
+            transform: translateY(-5px);
+        }
+        
+        .panel-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 50px;
+            height: 50px;
+            background: #FF9800;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+            z-index: 10;
+        }
+        
+        /* Улучшенный стиль для изображений */
+        .panel-image {
+            flex: 0 0 40%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            background: linear-gradient(145deg, #E3F2FD, #BBDEFB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .panel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .panel-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Запасные изображения на случай, если основные не загрузились */
+        .panel-image.fallback-image {
+            font-size: 5rem;
+            color: #2196F3;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .panel-image.fallback-image span {
+            font-size: 1.5rem;
+            margin-top: 15px;
+            color: #666;
+        }
+        
+        /* Эффект рамки для изображений */
+        .panel-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .panel-content {
+            flex: 1;
+        }
+        
+        .panel-content h3 {
+            color: #0D47A1;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #FF9800;
+        }
+        
+        .panel-text {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid #E3F2FD;
+        }
+        
+        /* Стиль для переводимых слов */
+        .translatable-word {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding: 2px 6px;
+            margin: 0 2px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            background: rgba(33, 150, 243, 0.05);
+        }
+        
+        .translatable-word:hover {
+            background-color: rgba(33, 150, 243, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+        }
+        
+        .translation-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: white;
+            color: #333;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid #2196F3;
+            z-index: 100;
+            min-width: 180px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            pointer-events: none;
+            margin-bottom: 10px;
+        }
+        
+        .translation-tooltip.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .tooltip-word {
+            color: #2196F3;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .tooltip-translation {
+            color: #0D47A1;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Мораль истории */
+        .moral-section {
+            background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            border: 8px solid #FF9800;
+            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.2);
+        }
+        
+        .moral-title {
+            color: #2E7D32;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .moral-text {
+            font-size: 1.6rem;
+            color: #424242;
+            font-style: italic;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Раздел про глаголы - СИНЯЯ РАМКА */
+        .grammar-section {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+            border: 8px solid #2196F3;
+            box-shadow: 0 10px 30px rgba(33, 150, 243, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grammar-section:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #2196F3, #29b6f6, #2196F3);
+            animation: slide 3s infinite linear;
+        }
+        
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .grammar-title {
+            color: #0D47A1;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .grammar-text {
+            font-size: 1.4rem;
+            color: #1565C0;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 2px solid #90CAF9;
+        }
+        
+        .learn-more-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #2196F3, #0D47A1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .learn-more-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
+        }
+        
+        /* Игра */
+        .game-section {
+            background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            border: 8px solid #9C27B0;
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.2);
+        }
+        
+        .game-title {
+            color: #7B1FA2;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .game-instruction {
+            font-size: 1.3rem;
+            color: #424242;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .question {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid #E1BEE7;
+            transition: transform 0.3s;
+        }
+        
+        .question:hover {
+            transform: translateX(5px);
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            flex: 1;
+        }
+        
+        .answer-buttons {
+            display: flex;
+            gap: 15px;
+            margin-left: 20px;
+        }
+        
+        .answer-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        
+        .hare-btn {
+            background: linear-gradient(135deg, #FFB74D, #FF9800);
+            color: white;
+        }
+        
+        .tortoise-btn {
+            background: linear-gradient(135deg, #66BB6A, #4CAF50);
+            color: white;
+        }
+        
+        .answer-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .answer-btn.selected {
+            border: 4px solid #333;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .check-button {
+            display: block;
+            margin: 40px auto 0;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.3);
+        }
+        
+        .check-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(156, 39, 176, 0.4);
+        }
+        
+        .result {
+            text-align: center;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .result.success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 3px solid #4CAF50;
+        }
+        
+        .result.error {
+            background: #FFEBEE;
+            color: #D32F2F;
+            border: 3px solid #F44336;
+        }
+        
+        /* Футер */
+        .comic-footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 50px;
+            border-top: 2px solid #E0E0E0;
+            background: #f5f5f5;
+            border-radius: 15px;
+        }
+        
+        .copyright {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #555;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 900px) {
+            .comic-container {
+                padding: 20px;
+            }
+            
+            .comic-title {
+                font-size: 2.2rem;
+            }
+            
+            .story-title-box {
+                font-size: 1.5rem;
+                padding: 12px 20px;
+            }
+            
+            .comic-panel {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .panel-image {
+                width: 100%;
+                height: 300px;
+            }
+            
+            .panel-content h3 {
+                font-size: 1.6rem;
+            }
+            
+            .panel-text {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+            
+            .question {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .answer-buttons {
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .comic-title {
+                font-size: 1.8rem;
+            }
+            
+            .comic-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .story-title-box {
+                font-size: 1.3rem;
+                padding: 10px 15px;
+            }
+            
+            .panel-image {
+                height: 250px;
+            }
+            
+            .panel-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .moral-title, .grammar-title, .game-title {
+                font-size: 1.8rem;
+            }
+            
+            .moral-text, .grammar-text {
+                font-size: 1.3rem;
+                padding: 20px;
+            }
+            
+            .answer-btn {
+                padding: 10px 15px;
+                font-size: 1.1rem;
+                min-width: 100px;
+            }
+            
+            .check-button, .learn-more-btn {
+                padding: 15px 40px;
+                font-size: 1.3rem;
+            }
+            
+            .translation-info {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comic-container">
+        <!-- Информация о переводе -->
+        <div class="translation-info">
+            💡 Нажав на любое слово, ты можешь услышать, как оно читается и увидеть перевод!
+        </div>
+        
+        <!-- Заголовок -->
+        <header class="comic-header">
+            <h1 class="comic-title">Заяц и Черепаха</h1>
+            <p class="comic-subtitle">Интерактивный комикс для изучения английского языка</p>
+        </header>
+        
+        <!-- Синий квадратик с названием истории -->
+        <div class="story-title-box">The Hare and the Tortoise</div>
+        
+        <!-- Панель 1 -->
+        <div class="comic-panels">
+            <div class="comic-panel" id="panel1">
+                <div class="panel-number">1</div>
+                <div class="panel-image" id="img1">
+                    <img src="images/hare_tortoise1.jpg" alt="Заяц и Черепаха" onerror="showFallbackImage(1, '🐇🐢', 'Заяц и Черепаха')">
+                </div>
+                <div class="panel-content">
+                    <h3>Once Upon a Time...</h3>
+                    <div class="panel-text" id="text1">
+                        <span class="translatable-word" data-word="Once" data-translation="Однажды">Once</span>
+                        <span class="translatable-word" data-word="upon" data-translation="на">upon</span>
+                        <span class="translatable-word" data-word="a" data-translation="один">a</span>
+                        <span class="translatable-word" data-word="time" data-translation="время">time</span>,
+                        <span class="translatable-word" data-word="there" data-translation="там">there</span>
+                        <span class="translatable-word" data-word="was" data-translation="был">was</span>
+                        <span class="translatable-word" data-word="a" data-translation="один">a</span>
+                        <span class="translatable-word" data-word="very" data-translation="очень">very</span>
+                        <span class="translatable-word" data-word="fast" data-translation="быстрый">fast</span>
+                        <span class="translatable-word" data-word="hare" data-translation="заяц">hare</span>
+                        <span class="translatable-word" data-word="and" data-translation="и">and</span>
+                        <span class="translatable-word" data-word="a" data-translation="один">a</span>
+                        <span class="translatable-word" data-word="very" data-translation="очень">very</span>
+                        <span class="translatable-word" data-word="slow" data-translation="медленный">slow</span>
+                        <span class="translatable-word" data-word="tortoise" data-translation="черепаха">tortoise</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Панель 2 -->
+            <div class="comic-panel" id="panel2">
+                <div class="panel-number">2</div>
+                <div class="panel-image" id="img2">
+                    <img src="images/hare_tortoise2.jpg" alt="Заяц смеется над Черепахой" onerror="showFallbackImage(2, '😆🐢', 'Заяц смеется')">
+                </div>
+                <div class="panel-content">
+                    <h3>The Hare Laughed</h3>
+                    <div class="panel-text" id="text2">
+                        <span class="translatable-word" data-word="The" data-translation="Этот">The</span>
+                        <span class="translatable-word" data-word="hare" data-translation="заяц">hare</span>
+                        <span class="translatable-word" data-word="always" data-translation="всегда">always</span>
+                        <span class="translatable-word" data-word="laughed" data-translation="смеялся">laughed</span>
+                        <span class="translatable-word" data-word="at" data-translation="на">at</span>
+                        <span class="translatable-word" data-word="the" data-translation="этого">the</span>
+                        <span class="translatable-word" data-word="tortoise" data-translation="черепаху">tortoise</span>
+                        <span class="translatable-word" data-word="because" data-translation="потому что">because</span>
+                        <span class="translatable-word" data-word="he" data-translation="он">he</span>
+                        <span class="translatable-word" data-word="was" data-translation="был">was</span>
+                        <span class="translatable-word" data-word="so" data-translation="такой">so</span>
+                        <span class="translatable-word" data-word="slow" data-translation="медленный">slow</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Панель 3 -->
+            <div class="comic-panel" id="panel3">
+                <div class="panel-number">3</div>
+                <div class="panel-image" id="img3">
+                    <img src="images/hare_tortoise3.jpg" alt="Старт гонки" onerror="showFallbackImage(3, '🏁🎯', 'Старт гонки')">
+                </div>
+                <div class="panel-content">
+                    <h3>The Challenge</h3>
+                    <div class="panel-text" id="text3">
+                        <span class="translatable-word" data-word="All" data-translation="Все">All</span>
+                        <span class="translatable-word" data-word="the" data-translation="эти">the</span>
+                        <span class="translatable-word" data-word="animals" data-translation="животные">animals</span>
+                        <span class="translatable-word" data-word="were" data-translation="были">were</span>
+                        <span class="translatable-word" data-word="tired" data-translation="устали">tired</span>
+                        <span class="translatable-word" data-word="of" data-translation="от">of</span>
+                        <span class="translatable-word" data-word="listening" data-translation="слушания">listening</span>
+                        <span class="translatable-word" data-word="to" data-translation="к">to</span>
+                        <span class="translatable-word" data-word="the" data-translation="этому">the</span>
+                        <span class="translatable-word" data-word="hare" data-translation="зайцу">hare</span>.
+                        <span class="translatable-word" data-word="Then" data-translation="Затем">Then</span>
+                        <span class="translatable-word" data-word="one" data-translation="однажды">one</span>
+                        <span class="translatable-word" data-word="day" data-translation="день">day</span>
+                        <span class="translatable-word" data-word="the" data-translation="этот">the</span>
+                        <span class="translatable-word" data-word="tortoise" data-translation="черепаха">tortoise</span>
+                        <span class="translatable-word" data-word="surprised" data-translation="удивлен">surprised</span>
+                        <span class="translatable-word" data-word="them" data-translation="их">them</span>
+                        <span class="translatable-word" data-word="all" data-translation="всех">all</span>:
+                        <span class="translatable-word" data-word="Let's" data-translation="Давайте">"Let's</span>
+                        <span class="translatable-word" data-word="have" data-translation="устроим">have</span>
+                        <span class="translatable-word" data-word="a" data-translation="одну">a</span>
+                        <span class="translatable-word" data-word="race" data-translation="гонку">race</span>
+                        <span class="translatable-word" data-word="tomorrow" data-translation="завтра">tomorrow</span>
+                        <span class="translatable-word" data-word="then" data-translation="тогда">then</span>!"
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Панель 4 -->
+            <div class="comic-panel" id="panel4">
+                <div class="panel-number">4</div>
+                <div class="panel-image" id="img4">
+                    <img src="images/hare_tortoise4.jpg" alt="Заяц спит под деревом" onerror="showFallbackImage(4, '🌳😴', 'Заяц спит')">
+                </div>
+                <div class="panel-content">
+                    <h3>The Race Day</h3>
+                    <div class="panel-text" id="text4">
+                        <span class="translatable-word" data-word="It" data-translation="Это">It</span>
+                        <span class="translatable-word" data-word="was" data-translation="был">was</span>
+                        <span class="translatable-word" data-word="a" data-translation="один">a</span>
+                        <span class="translatable-word" data-word="very" data-translation="очень">very</span>
+                        <span class="translatable-word" data-word="sunny" data-translation="солнечный">sunny</span>
+                        <span class="translatable-word" data-word="day" data-translation="день">day</span>
+                        <span class="translatable-word" data-word="and" data-translation="и">and</span>
+                        <span class="translatable-word" data-word="the" data-translation="этот">the</span>
+                        <span class="translatable-word" data-word="hare" data-translation="заяц">hare</span>
+                        <span class="translatable-word" data-word="was" data-translation="был">was</span>
+                        <span class="translatable-word" data-word="very" data-translation="очень">very</span>
+                        <span class="translatable-word" data-word="hot" data-translation="горячий">hot</span>.
+                        <span class="translatable-word" data-word="There's" data-translation="Там есть">"There's</span>
+                        <span class="translatable-word" data-word="a" data-translation="одно">a</span>
+                        <span class="translatable-word" data-word="tree" data-translation="дерево">tree</span>.
+                        <span class="translatable-word" data-word="I" data-translation="Я">I</span>
+                        <span class="translatable-word" data-word="can" data-translation="могу">can</span>
+                        <span class="translatable-word" data-word="rest" data-translation="отдыхать">rest</span>
+                        <span class="translatable-word" data-word="under" data-translation="под">under</span>
+                        <span class="translatable-word" data-word="it" data-translation="ним">it</span>!"
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Панель 5 -->
+            <div class="comic-panel" id="panel5">
+                <div class="panel-number">5</div>
+                <div class="panel-image" id="img5">
+                    <img src="images/hare_tortoise5.jpg" alt="Черепаха победитель" onerror="showFallbackImage(5, '🐢🏆', 'Черепаха победила')">
+                </div>
+                <div class="panel-content">
+                    <h3>The Winner</h3>
+                    <div class="panel-text" id="text5">
+                        <span class="translatable-word" data-word="While" data-translation="Пока">While</span>
+                        <span class="translatable-word" data-word="the" data-translation="этот">the</span>
+                        <span class="translatable-word" data-word="hare" data-translation="заяц">hare</span>
+                        <span class="translatable-word" data-word="was" data-translation="был">was</span>
+                        <span class="translatable-word" data-word="sleeping" data-translation="спал">sleeping</span>,
+                        <span class="translatable-word" data-word="the" data-translation="этот">the</span>
+                        <span class="translatable-word" data-word="tortoise" data-translation="черепаха">tortoise</span>
+                        <span class="translatable-word" data-word="passed" data-translation="прошел">passed</span>
+                        <span class="translatable-word" data-word="him" data-translation="его">him</span>
+                        <span class="translatable-word" data-word="and" data-translation="и">and</span>
+                        <span class="translatable-word" data-word="was" data-translation="стал">was</span>
+                        <span class="translatable-word" data-word="the" data-translation="этим">the</span>
+                        <span class="translatable-word" data-word="winner" data-translation="победителем">winner</span>!
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Мораль истории -->
+        <div class="moral-section">
+            <h2 class="moral-title">What Lesson Do You Learn From The Story?</h2>
+            <div class="moral-text" id="moralText">
+                <span class="translatable-word" data-word="Slow" data-translation="Медленный">"Slow</span>
+                <span class="translatable-word" data-word="and" data-translation="и">and</span>
+                <span class="translatable-word" data-word="steady" data-translation="устойчивый">steady</span>
+                <span class="translatable-word" data-word="wins" data-translation="побеждает">wins</span>
+                <span class="translatable-word" data-word="the" data-translation="в">the</span>
+                <span class="translatable-word" data-word="race" data-translation="гонке">race</span>!"
+                <span class="translatable-word" data-word="Being" data-translation="Быть">Being</span>
+                <span class="translatable-word" data-word="consistent" data-translation="последовательным">consistent</span>
+                <span class="translatable-word" data-word="and" data-translation="и">and</span>
+                <span class="translatable-word" data-word="determined" data-translation="решительным">determined</span>
+                <span class="translatable-word" data-word="is" data-translation="является">is</span>
+                <span class="translatable-word" data-word="more" data-translation="более">more</span>
+                <span class="translatable-word" data-word="important" data-translation="важным">important</span>
+                <span class="translatable-word" data-word="than" data-translation="чем">than</span>
+                <span class="translatable-word" data-word="being" data-translation="быть">being</span>
+                <span class="translatable-word" data-word="fast" data-translation="быстрым">fast</span>
+                <span class="translatable-word" data-word="but" data-translation="но">but</span>
+                <span class="translatable-word" data-word="careless" data-translation="беззаботным">careless</span>.
+            </div>
+        </div>
+        
+        <!-- Раздел про глаголы -->
+        <div class="grammar-section">
+            <h2 class="grammar-title">Обратите внимание на глаголы!</h2>
+            <div class="grammar-text">
+                Вы наверное заметили, что у глаголов появилось окончание <strong>-ed</strong> 
+                (laughed, surprised, passed).<br>
+                Это прошедшее время в английском языке!
+            </div>
+            <a href="psp.html" class="learn-more-btn">Узнать больше о прошедшем времени</a>
+        </div>
+        
+        <!-- Игра -->
+        <div class="game-section">
+            <h2 class="game-title">Прочитай комикс и скажи, кто сделал это</h2>
+            <p class="game-instruction">Прочитай предложения и выбери Hare для Зайца или Tortoise для Черепахи</p>
+            
+            <div class="question" id="q1">
+                <div class="question-text" id="sentence1">
+                    <span class="translatable-word" data-word="He" data-translation="Он">He</span>
+                    <span class="translatable-word" data-word="always" data-translation="всегда">always</span>
+                    <span class="translatable-word" data-word="laughed" data-translation="смеялся">laughed</span>
+                    <span class="translatable-word" data-word="at" data-translation="на">at</span>
+                    <span class="translatable-word" data-word="him" data-translation="него">him</span>.
+                </div>
+                <div class="answer-buttons">
+                    <button class="answer-btn hare-btn" data-answer="H">Hare</button>
+                    <button class="answer-btn tortoise-btn" data-answer="T">Tortoise</button>
+                </div>
+            </div>
+            
+            <div class="question" id="q2">
+                <div class="question-text" id="sentence2">
+                    <span class="translatable-word" data-word="He" data-translation="Он">He</span>
+                    <span class="translatable-word" data-word="surprised" data-translation="удивлен">surprised</span>
+                    <span class="translatable-word" data-word="them" data-translation="их">them</span>
+                    <span class="translatable-word" data-word="all" data-translation="всех">all</span>.
+                </div>
+                <div class="answer-buttons">
+                    <button class="answer-btn hare-btn" data-answer="H">Hare</button>
+                    <button class="answer-btn tortoise-btn" data-answer="T">Tortoise</button>
+                </div>
+            </div>
+            
+            <div class="question" id="q3">
+                <div class="question-text" id="sentence3">
+                    <span class="translatable-word" data-word="He" data-translation="Он">He</span>
+                    <span class="translatable-word" data-word="jumped" data-translation="прыгнул">jumped</span>
+                    <span class="translatable-word" data-word="forward" data-translation="вперед">forward</span>.
+                </div>
+                <div class="answer-buttons">
+                    <button class="answer-btn hare-btn" data-answer="H">Hare</button>
+                    <button class="answer-btn tortoise-btn" data-answer="T">Tortoise</button>
+                </div>
+            </div>
+            
+            <div class="question" id="q4">
+                <div class="question-text" id="sentence4">
+                    <span class="translatable-word" data-word="He" data-translation="Он">He</span>
+                    <span class="translatable-word" data-word="passed" data-translation="прошел">passed</span>
+                    <span class="translatable-word" data-word="him" data-translation="его">him</span>.
+                </div>
+                <div class="answer-buttons">
+                    <button class="answer-btn hare-btn" data-answer="H">Hare</button>
+                    <button class="answer-btn tortoise-btn" data-answer="T">Tortoise</button>
+                </div>
+            </div>
+            
+            <div class="question" id="q5">
+                <div class="question-text" id="sentence5">
+                    <span class="translatable-word" data-word="Suddenly" data-translation="Внезапно">Suddenly</span>,
+                    <span class="translatable-word" data-word="he" data-translation="он">he</span>
+                    <span class="translatable-word" data-word="opened" data-translation="открыл">opened</span>
+                    <span class="translatable-word" data-word="his" data-translation="свои">his</span>
+                    <span class="translatable-word" data-word="eyes" data-translation="глаза">eyes</span>.
+                </div>
+                <div class="answer-buttons">
+                    <button class="answer-btn hare-btn" data-answer="H">Hare</button>
+                    <button class="answer-btn tortoise-btn" data-answer="T">Tortoise</button>
+                </div>
+            </div>
+            
+            <div class="question" id="q6">
+                <div class="question-text" id="sentence6">
+                    <span class="translatable-word" data-word="He" data-translation="Он">He</span>
+                    <span class="translatable-word" data-word="was" data-translation="был">was</span>
+                    <span class="translatable-word" data-word="the" data-translation="этим">the</span>
+                    <span class="translatable-word" data-word="winner" data-translation="победителем">winner</span>.
+                </div>
+                <div class="answer-buttons">
+                    <button class="answer-btn hare-btn" data-answer="H">Hare</button>
+                    <button class="answer-btn tortoise-btn" data-answer="T">Tortoise</button>
+                </div>
+            </div>
+            
+            <button class="check-button" onclick="checkAnswers()">Проверить ответы</button>
+            
+            <div class="result" id="resultMessage"></div>
+        </div>
+        
+        <!-- Футер -->
+        <footer class="comic-footer">
+            <p>Интерактивный комикс для изучения английского © 2026, авторы: Маслик А.А. и Астафьева Э.Н.</p>
+            <p class="copyright">Все права защищены. Любое копирование или использование материалов без разрешения авторов запрещено.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация перевода слов
+            initTranslation();
+            
+            // Инициализация игры
+            initGame();
+            
+            // Проверяем загрузку изображений
+            checkImages();
+            
+            // Добавляем звуковое оповещение о переводе
+            const translationInfo = document.querySelector('.translation-info');
+            if (translationInfo) {
+                translationInfo.addEventListener('click', function() {
+                    if ('speechSynthesis' in window) {
+                        const msg = new SpeechSynthesisUtterance('Нажав на любое слово, ты можешь услышать, как оно читается и увидеть перевод');
+                        msg.lang = 'ru-RU';
+                        msg.rate = 0.9;
+                        speechSynthesis.speak(msg);
+                    }
+                });
+            }
+        });
+        
+        // Проверка загрузки изображений
+        function checkImages() {
+            const images = document.querySelectorAll('.panel-image img');
+            images.forEach((img, index) => {
+                img.onerror = function() {
+                    console.log(`Ошибка загрузки изображения ${index + 1}`);
+                    showFallbackImage(index + 1, '', '');
+                };
+            });
+        }
+        
+        // Показать запасное изображение
+        function showFallbackImage(panelNumber, emoji, title) {
+            const imageContainer = document.getElementById(`img${panelNumber}`);
+            if (!imageContainer) return;
+            
+            imageContainer.innerHTML = '';
+            imageContainer.classList.add('fallback-image');
+            
+            if (emoji) {
+                imageContainer.innerHTML = `<div>${emoji}</div>`;
+            }
+            
+            if (title) {
+                imageContainer.innerHTML += `<span>${title}</span>`;
+            }
+        }
+        
+        // ====== СИСТЕМА ПЕРЕВОДА И ОЗВУЧКИ ======
+        function initTranslation() {
+            // Находим все слова для перевода
+            const words = document.querySelectorAll('.translatable-word');
+            
+            // Для каждого слова добавляем обработчик клика
+            words.forEach(word => {
+                // Создаем тултип для перевода
+                const tooltip = document.createElement('div');
+                tooltip.className = 'translation-tooltip';
+                tooltip.innerHTML = `
+                    <div class="tooltip-word">${word.dataset.word}</div>
+                    <div class="tooltip-translation">${word.dataset.translation}</div>
+                `;
+                
+                // Добавляем тултип к слову
+                word.appendChild(tooltip);
+                
+                // Обработчик клика на слово
+                word.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    
+                    // Скрываем все остальные тултипы
+                    document.querySelectorAll('.translation-tooltip.show').forEach(t => {
+                        t.classList.remove('show');
+                    });
+                    
+                    // Показываем тултип текущего слова
+                    tooltip.classList.add('show');
+                    
+                    // Озвучиваем слово при клике
+                    speakWord(word.dataset.word);
+                });
+            });
+            
+            // Скрываем тултипы при клике вне слов
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.translation-tooltip.show').forEach(tooltip => {
+                    tooltip.classList.remove('show');
+                });
+            });
+        }
+        
+        // Озвучивание слова
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                // Отменяем текущую речь
+                window.speechSynthesis.cancel();
+                
+                // Создаем речь
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                utterance.volume = 1;
+                utterance.pitch = 1;
+                
+                // Добавляем небольшой звуковой эффект
+                try {
+                    // Создаем контекст аудио
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) {
+                        const audioContext = new AudioContext();
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = 800;
+                        oscillator.type = 'sine';
+                        
+                        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                        
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.1);
+                    }
+                } catch (e) {
+                    console.log("Аудио контекст не поддерживается");
+                }
+                
+                // Произносим слово
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // ====== ИГРА ======
+        function initGame() {
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            
+            answerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Убираем выделение с других кнопок в этом вопросе
+                    const question = this.closest('.question');
+                    question.querySelectorAll('.answer-btn').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                    
+                    // Выделяем выбранную кнопку
+                    this.classList.add('selected');
+                    
+                    // Сохраняем ответ
+                    question.dataset.answer = this.dataset.answer;
+                    
+                    // Добавляем звуковой эффект при выборе ответа
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = this.dataset.answer === 'H' ? 600 : 400;
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.3);
+                });
+            });
+        }
+        
+        // Правильные ответы
+        const correctAnswers = {
+            'q1': 'H',
+            'q2': 'T',
+            'q3': 'H',
+            'q4': 'T',
+            'q5': 'H',
+            'q6': 'T'
+        };
+        
+        // Проверка ответов
+        function checkAnswers() {
+            const questions = document.querySelectorAll('.question');
+            let correctCount = 0;
+            const totalQuestions = questions.length;
+            
+            // Сбрасываем все стили кнопок
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.style.border = '';
+                btn.style.boxShadow = '';
+            });
+            
+            // Проверяем каждый вопрос
+            questions.forEach(question => {
+                const questionId = question.id;
+                const userAnswer = question.dataset.answer;
+                const correctAnswer = correctAnswers[questionId];
+                
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    // Подсвечиваем правильный ответ зеленым
+                    question.querySelector(`.answer-btn[data-answer="${correctAnswer}"]`).style.border = '4px solid #4CAF50';
+                    question.querySelector(`.answer-btn[data-answer="${correctAnswer}"]`).style.boxShadow = '0 0 10px rgba(76, 175, 80, 0.5)';
+                } else if (userAnswer) {
+                    // Подсвечиваем неправильный ответ красным
+                    question.querySelector(`.answer-btn[data-answer="${userAnswer}"]`).style.border = '4px solid #F44336';
+                    question.querySelector(`.answer-btn[data-answer="${userAnswer}"]`).style.boxShadow = '0 0 10px rgba(244, 67, 54, 0.5)';
+                    // И показываем правильный ответ зеленым
+                    question.querySelector(`.answer-btn[data-answer="${correctAnswer}"]`).style.border = '4px solid #4CAF50';
+                    question.querySelector(`.answer-btn[data-answer="${correctAnswer}"]`).style.boxShadow = '0 0 10px rgba(76, 175, 80, 0.5)';
+                }
+            });
+            
+            // Показываем результат
+            const resultMessage = document.getElementById('resultMessage');
+            resultMessage.style.display = 'block';
+            
+            if (correctCount === totalQuestions) {
+                resultMessage.textContent = `Отлично! Ты ответил правильно на все ${correctCount} из ${totalQuestions} вопросов! 🎉`;
+                resultMessage.className = 'result success';
+                // Звук победы
+                playVictorySound();
+            } else if (correctCount >= totalQuestions / 2) {
+                resultMessage.textContent = `Хорошая работа! Ты ответил правильно на ${correctCount} из ${totalQuestions} вопросов. 👍`;
+                resultMessage.className = 'result success';
+            } else {
+                resultMessage.textContent = `Ты ответил правильно на ${correctCount} из ${totalQuestions} вопросов. Попробуй еще раз! 💪`;
+                resultMessage.className = 'result error';
+            }
+            
+            // Прокручиваем к результату
+            resultMessage.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Звук победы
+        function playVictorySound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const frequencies = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                
+                frequencies.forEach((freq, index) => {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = freq;
+                        oscillator.type = 'sine';
+                        
+                        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                    }, index * 200);
+                });
+            } catch (e) {
+                console.log("Аудио контекст не поддерживается");
+            }
+        }
+    </script>
+</body>
+</html>
